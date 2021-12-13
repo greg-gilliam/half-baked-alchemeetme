@@ -2,7 +2,7 @@
 
 ## Learning Objectives
 
-- Use `useContext` to manage global application state
+- Use `useContext` hook to manage global application state
 - Be able to spread props into children components
 - Use functions to expose API calls to components
 - Use custom hooks to share application logic
