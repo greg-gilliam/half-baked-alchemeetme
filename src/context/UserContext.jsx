@@ -1,11 +1,21 @@
-import { useContext, createContext, useState } from 'react'
+import { useContext, createContext, useState, useEffect, fetchUser } from 'react'
 
 const UserContext = createContext()
 
-const userProvider = ({ children }) => {
-  const [user, setUser] = useState([])
+const UserProvider = ({ children }) => {
+  const [user, setUser] = useState({})
 
-  return <UserContext.Provider value={{ user, setUser }}>{children}</UserContext.Provider>
+  useEffect(() => {
+    fetchUser()
+      .then((fetchedUser) => {
+        setUser(fetchedUser)
+      })
+      .catch((error) => {
+        throw new Error(`Error: ${error}`)
+      })
+  }, [])
+
+  return <UserContext.Provider value={{ user }}>{children}</UserContext.Provider>
 }
 
 const useUser = () => {
