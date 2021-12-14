@@ -2,11 +2,13 @@ import { useContext, createContext, useState } from 'react'
 
 const ProfileContext = createContext()
 
-const ProfileProvider = ({ children }) => {
+const ProfileProvider = ({ children, user }) => {
   const [profile, setProfile] = useState('')
 
   return (
-    <ProfileContext.Provider value={{ profile, setProfile }}>{children}</ProfileContext.Provider>
+    <ProfileContext.Provider value={{ profile, setProfile }}>
+      {(children, user)}
+    </ProfileContext.Provider>
   )
 }
 
